@@ -1,7 +1,7 @@
 """
 Makeathon Rover — entry point.
 
-    python main.py
+    cd /home/makeathon/Makethon && source venv/bin/activate && python3 main.py
 
 Make sure the Arduino is connected and SERIAL_PORT in config.py
 points to the correct device (e.g. /dev/ttyACM0 or COMx).
