@@ -20,7 +20,7 @@ SERIAL_COMMAND_TIMEOUT = 30   # seconds to wait for a command to finish
 
 # ── Servo positions (0–100, adjust through trial and error) ───────────────────
 
-SERVO_LEFT = 0       # nozzle toward camera side (scanning position)
+SERVO_LEFT = 100     # nozzle toward camera side (scanning position)
 SERVO_CENTER = 50    # nozzle aligned with stem (dispensing position)
 
 # ── Motor ─────────────────────────────────────────────────────────────────────
