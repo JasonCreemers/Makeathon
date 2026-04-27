@@ -57,8 +57,8 @@
 #define SERVO_MAX_US   544     // pulse width at position 100
 
 // Pump — L298N H-bridge
-#define PUMP_IN1  23
-#define PUMP_IN2  25
+#define PUMP_IN1  17
+#define PUMP_IN2  23
 
 // =============================================================================
 // TUNING CONSTANTS
