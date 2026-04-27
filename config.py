@@ -22,7 +22,7 @@ SERIAL_COMMAND_TIMEOUT = 30   # seconds to wait for a command to finish
 
 SERVO_LEFT = 0       # nozzle toward camera side (scanning position)
 SERVO_CENTER = 50    # nozzle aligned with stem (dispensing position)
-SERVO_MAX = 75       # max servo position (capped)
+SERVO_MAX = 60       # max servo position (capped)
 
 # ── Motor ─────────────────────────────────────────────────────────────────────
 
