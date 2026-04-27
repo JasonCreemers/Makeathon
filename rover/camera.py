@@ -28,7 +28,7 @@ class Camera:
             from libcamera import Transform
 
             self._cam = Picamera2()
-            transform = Transform(vflip=True) if config.CAMERA_VFLIP else Transform()
+            transform = Transform(vflip=True, hflip=True) if config.CAMERA_VFLIP else Transform()
             cfg = self._cam.create_still_configuration(
                 main={"size": config.CAMERA_RESOLUTION},
                 transform=transform,
@@ -81,8 +81,8 @@ class Camera:
         if was_open:
             self.close()
 
-        vflip = "--vflip" if config.CAMERA_VFLIP else ""
-        cmd = f"rpicam-hello -t 0 {vflip}".strip()
+        flip_args = "--vflip --hflip" if config.CAMERA_VFLIP else ""
+        cmd = f"rpicam-hello -t 0 {flip_args}".strip()
 
         print(f"Live feed — press Ctrl-C to close.")
         try:
