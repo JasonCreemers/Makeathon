@@ -46,9 +46,13 @@ def _center_on_stem(arduino: Arduino, camera: Camera) -> bool:
     Nudge the rover forward/backward with decreasing step sizes until
     the best-detected stem is within CENTER_TOLERANCE of the image centre.
 
+    Step size only halves when the direction flips (overshot).
+    Same direction = keep the same step size.
+
     Returns True if centred successfully, False if the stem was lost.
     """
     step_size = config.CENTER_START_STEPS
+    last_direction = None
 
     while True:
         # Capture and detect
@@ -88,16 +92,19 @@ def _center_on_stem(arduino: Arduino, camera: Camera) -> bool:
         #   stem right of centre → rover hasn't reached it → FORWARD
         #   stem left of centre  → rover passed it         → BACKWARD
         direction = "FORWARD" if offset > 0 else "BACKWARD"
+
+        # Only halve step size when direction flips (overshot)
+        if last_direction is not None and direction != last_direction:
+            step_size = max(step_size // 2, config.CENTER_MIN_STEPS)
+
         print(f"  Nudging {direction} {step_size} steps...")
+        last_direction = direction
 
         try:
             _send(arduino, f"MOVE:{direction}:{step_size:04d}")
         except ArduinoError as exc:
             print(f"  Arduino error: {exc}")
             return False
-
-        # Halve step size for next iteration
-        step_size = max(step_size // 2, config.CENTER_MIN_STEPS)
 
 
 def run(arduino: Arduino, camera: Camera) -> None:
