@@ -53,8 +53,8 @@
 
 // Servo — Timer1 hardware PWM on pin 11 (OC1A)
 #define SERVO_PIN      11
-#define SERVO_MIN_US   544     // pulse width at position 0 (adjust to calibrate)
-#define SERVO_MAX_US   2400    // pulse width at position 100
+#define SERVO_MIN_US   2400    // pulse width at position 0 (adjust to calibrate)
+#define SERVO_MAX_US   544     // pulse width at position 100
 
 // Pump — L298N H-bridge
 #define PUMP_IN1  23
