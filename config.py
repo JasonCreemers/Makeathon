@@ -26,7 +26,8 @@ SERVO_MAX = 60       # max servo position (capped)
 
 # ── Motor ─────────────────────────────────────────────────────────────────────
 
-SEARCH_STEPS = 100   # steps forward between search frames
+SEARCH_STEPS = 2000  # steps forward when no plant found
+PASS_STEPS = 5000    # steps forward after fertilizing to pass the plant
 
 # ── Centering ─────────────────────────────────────────────────────────────────
 

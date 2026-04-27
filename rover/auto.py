@@ -152,4 +152,6 @@ def run(arduino: Arduino, camera: Camera) -> None:
         print("Stowing nozzle (servo → left)...")
         _send(arduino, f"SERVO:{config.SERVO_LEFT:03d}")
 
-        print("Plant fertilized. Searching for next plant...\n")
+        print(f"Plant fertilized. Moving forward {config.PASS_STEPS} steps to pass plant...")
+        _send(arduino, f"MOVE:FORWARD:{config.PASS_STEPS:04d}")
+        print("Searching for next plant...\n")
