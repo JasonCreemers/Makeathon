@@ -1,10 +1,11 @@
 """
 Raspberry Pi camera interface (IMX708 via picamera2).
 
-Provides still capture and a live OpenCV preview window.
+Provides still capture and a live preview via rpicam-hello.
 The camera is mounted upside-down, so vflip is applied.
 """
 
+import subprocess
 import time
 from datetime import datetime
 from pathlib import Path
@@ -67,23 +68,24 @@ class Camera:
 
     def live_feed(self) -> None:
         """
-        Show a live camera preview in an OpenCV window.
-        Press 'q' or ESC to close.
+        Show a live camera preview using rpicam-hello.
+        Press Ctrl-C to close.
+
+        Note: this temporarily closes and reopens the picamera2
+        instance since rpicam-hello needs exclusive camera access.
         """
-        if not self._cam:
-            print("Camera is not open.")
-            return
+        was_open = self._cam is not None
+        if was_open:
+            self.close()
 
-        import cv2
+        vflip = "--vflip" if config.CAMERA_VFLIP else ""
+        cmd = f"rpicam-hello -t 0 {vflip}".strip()
 
-        print("Live feed — press 'q' or ESC to close.")
-
+        print(f"Live feed — press Ctrl-C to close.")
         try:
-            while True:
-                frame = self._cam.capture_array()
-                cv2.imshow("Rover Camera", frame)
-                key = cv2.waitKey(1) & 0xFF
-                if key == ord("q") or key == 27:  # q or ESC
-                    break
-        finally:
-            cv2.destroyAllWindows()
+            subprocess.run(cmd.split())
+        except KeyboardInterrupt:
+            pass
+
+        if was_open:
+            self.open()
