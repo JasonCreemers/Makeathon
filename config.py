@@ -49,7 +49,7 @@ CAMERA_RESOLUTION = (1280, 720)  # lower res for faster Roboflow uploads
 
 ROBOFLOW_API_KEY = os.environ.get("ROBOFLOW_API_KEY", "")
 ROBOFLOW_MODEL_ID = "stem_detection-qeoi4/1"
-ROBOFLOW_CONFIDENCE = 60   # integer 0–100
+ROBOFLOW_CONFIDENCE = 70   # integer 0–100
 ROBOFLOW_URL = "https://serverless.roboflow.com"
 
 # ── Data ──────────────────────────────────────────────────────────────────────
