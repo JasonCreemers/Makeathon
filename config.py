@@ -42,6 +42,7 @@ PUMP_BACKWARD_SEC = 10
 # ── Camera ────────────────────────────────────────────────────────────────────
 
 CAMERA_VFLIP = True
+CAMERA_RESOLUTION = (1280, 720)  # lower res for faster Roboflow uploads
 
 # ── Roboflow ──────────────────────────────────────────────────────────────────
 

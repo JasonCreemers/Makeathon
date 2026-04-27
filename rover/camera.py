@@ -29,7 +29,10 @@ class Camera:
 
             self._cam = Picamera2()
             transform = Transform(vflip=True) if config.CAMERA_VFLIP else Transform()
-            cfg = self._cam.create_still_configuration(transform=transform)
+            cfg = self._cam.create_still_configuration(
+                main={"size": config.CAMERA_RESOLUTION},
+                transform=transform,
+            )
             self._cam.configure(cfg)
             self._cam.start()
             time.sleep(1)  # let auto-exposure settle
